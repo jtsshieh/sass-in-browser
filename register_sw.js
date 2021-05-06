@@ -3,22 +3,22 @@ if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('/sw.js').then(function(registration) {
       // Registration was successful
       console.log('ServiceWorker registration successful with scope: ', registration.scope);
-      var serviceWorker;
-      if (registration.installing) {
-        serviceWorker = registration.installing;
-      } else if (registration.waiting) {
-        serviceWorker = registration.waiting;
-      } else if (registration.active) {
-        serviceWorker = registration.active;
-      }
+      // var serviceWorker;
+      // if (registration.installing) {
+      //   serviceWorker = registration.installing;
+      // } else if (registration.waiting) {
+      //   serviceWorker = registration.waiting;
+      // } else if (registration.active) {
+      //   serviceWorker = registration.active;
+      // }
 
-      if (serviceWorker) {
-        if (serviceWorker.state === 'activated') return insertCss();
-        serviceWorker.addEventListener('statechange', function(e) {
-          if (e.target.state === 'activated') insertCss();
+      // if (serviceWorker) {
+      //   if (serviceWorker.state === 'activated') return insertCss();
+      //   serviceWorker.addEventListener('statechange', function(e) {
+      //     if (e.target.state === 'activated') insertCss();
           
-        });
-      }
+      //   });
+      // }
     }, function(err) {
       // registration failed :(
       console.log('ServiceWorker registration failed: ', err);
@@ -35,3 +35,6 @@ function insertCss() {
   })
 
 }
+window.addEventListener('load', () => {
+  insertCss();
+});
